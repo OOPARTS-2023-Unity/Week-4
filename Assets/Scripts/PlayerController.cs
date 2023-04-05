@@ -207,13 +207,14 @@ public class PlayerController : MonoBehaviour
         rgbody.AddForce(new Vector2(0, 1) * (JUMP_POWER * 1.5f));
         currentJumpCount = 0;
     }
+
     public void Hit(int direction, float dmg)
     {
         currentHp -= dmg;
         rgbody.AddForce(new Vector2(direction * 400, 400));
 
         if (isHit)
-            StopCoroutine(Hitting());
+            StopCoroutine("Hitting");
         StartCoroutine(Hitting());
     }
 

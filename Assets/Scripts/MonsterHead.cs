@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class MonsterHead : MonoBehaviour
 {
+    //public MonsterController monsterController;
 
-    public MonsterController monsterController;
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("PlayerFeet"))
-        {
-            monsterController.Hit(5);
-            collision.GetComponentInParent<PlayerController>().LaunchUp();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("PlayerFeet"))
+    //    {
+    //        monsterController.Hit(5);
+    //        collision.GetComponentInParent<PlayerController>().LaunchUp();
+    //    }
+    //}
 }
 

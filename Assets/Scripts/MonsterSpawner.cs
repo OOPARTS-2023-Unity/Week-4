@@ -15,16 +15,15 @@ public class MonsterSpawner : MonoBehaviour
     {
         monster = (GameObject)Resources.Load("Prefabs/Monster/slimeBlue", typeof(GameObject));
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 2; i++)
-        {
-            GameObject t = Instantiate(monster, this.gameObject.transform);
-            monsterQueue.Enqueue(t);
-            t.GetComponent<MonsterController>().mSpawner = this;
-            t.SetActive(false);
-        }
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    InstantiateMonster();
+        //}
+
         spawnCooldown = 0f;
     }
 
@@ -32,26 +31,42 @@ public class MonsterSpawner : MonoBehaviour
     void Update()
     {
         spawnCooldown += Time.deltaTime;
-        if (monsterQueue.Count > 0 && spawnCooldown > spawnCycle)
+        if (spawnCooldown > spawnCycle)
         {
             spawnMonster();
             spawnCooldown = 0;
         }
+        //if (monsterQueue.Count > 0 && spawnCooldown > spawnCycle)
+        //{
+        //    spawnMonster();
+        //    spawnCooldown = 0;
+        //}
+    }
+
+    private GameObject InstantiateMonster()
+    {
+        GameObject t = Instantiate(monster, this.gameObject.transform);
+        t.GetComponent<MonsterController>().mSpawner = this;
+        t.SetActive(false);
+        //monsterQueue.Enqueue(t);
+
+        return t;
     }
 
     void spawnMonster()
     {
         float xPos = Random.Range(-2, 2);
         Vector3 varVector = new Vector3(xPos, 0f, 0f);
-        GameObject t = monsterQueue.Dequeue();
+        GameObject t = InstantiateMonster();
+        //GameObject t = monsterQueue.Dequeue();
         t.SetActive(true);
         t.transform.position = gameObject.transform.position + varVector;
     }
 
-    public void monsterDead(GameObject t)
-    {
-        t.SetActive(false);
-        monsterQueue.Enqueue(t);
-        spawnCooldown = 1;
-    }
+    //public void monsterDead(GameObject t)
+    //{
+    //    t.SetActive(false);
+    //    monsterQueue.Enqueue(t);
+    //    spawnCooldown = 1;
+    //}
 }

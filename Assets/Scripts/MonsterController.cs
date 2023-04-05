@@ -61,18 +61,6 @@ public class MonsterController : MonoBehaviour
         }
         anim.SetFloat("speed", Math.Abs(rgbody.velocity.x));
 
-        float currentCooldown = 1; float coolTime = 2;
-
-        currentCooldown += Time.deltaTime;
-        if (currentCooldown > coolTime)
-        {
-            //do something;
-            currentCooldown = 0;
-        }
-
-
-
-
         currentInterval += Time.deltaTime;
     }
 
@@ -93,15 +81,15 @@ public class MonsterController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            //Destroy(gameObject);
             Die();
         }
     }
 
     public void Die()
     {
-        gameObject.SetActive(false);
-        mSpawner.monsterDead(gameObject);
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
+        //mSpawner.monsterDead(gameObject);
     }
 }
 
