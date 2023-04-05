@@ -82,11 +82,14 @@ public class PlayerController : MonoBehaviour
         {
             currentHp -= Time.deltaTime * 5000;
             currentHp -= rgbody.velocity.magnitude;
-            if (!isHit)
-            {
-                PlayerJump();
-                PlayerMove();
-            }
+
+            PlayerJump();
+            PlayerMove();
+            //if (!isHit)
+            //{
+            //    PlayerJump();
+            //    PlayerMove();
+            //}
         }
     }
 
@@ -202,27 +205,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void LaunchUp()
-    {
-        rgbody.AddForce(new Vector2(0, 1) * (JUMP_POWER * 1.5f));
-        currentJumpCount = 0;
-    }
+    //public void LaunchUp()
+    //{
+    //    rgbody.AddForce(new Vector2(0, 1) * (JUMP_POWER * 1.5f));
+    //    currentJumpCount = 0;
+    //}
 
-    public void Hit(int direction, float dmg)
-    {
-        currentHp -= dmg;
-        rgbody.AddForce(new Vector2(direction * 400, 400));
+    //public void Hit(int direction, float dmg)
+    //{
+    //    currentHp -= dmg;
+    //    rgbody.AddForce(new Vector2(direction * 400, 400));
 
-        if (isHit)
-            StopCoroutine("Hitting");
-        StartCoroutine(Hitting());
-    }
+    //    if (isHit)
+    //        StopCoroutine("Hitting");
+    //    StartCoroutine(Hitting());
+    //}
 
-    IEnumerator Hitting()
-    {
-        isHit = true;
-        yield return new WaitForSeconds(0.4f);
-        isHit = false;
-    }
+    //IEnumerator Hitting()
+    //{
+    //    isHit = true;
+    //    yield return new WaitForSeconds(0.4f);
+    //    isHit = false;
+    //}
 }
 

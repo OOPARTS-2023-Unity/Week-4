@@ -46,34 +46,34 @@ public class MonsterController : MonoBehaviour
     {
         currentHp -= Time.deltaTime;
 
-        playerMonsterDif = player.transform.localPosition - gameObject.transform.localPosition;
         if (currentHp <= 0)
         {
             Die();
         }
 
-        spRenderer.flipX = playerMonsterDif.x > 0;
+        //playerMonsterDif = player.transform.localPosition - gameObject.transform.localPosition;
 
-        if (currentInterval > MoveInterval)
-        {
-            rgbody.velocity = new Vector2(Math.Sign(playerMonsterDif.x) * Acceleration, rgbody.velocity.y);
-            currentInterval = 0;
-        }
-        anim.SetFloat("speed", Math.Abs(rgbody.velocity.x));
+        //spRenderer.flipX = playerMonsterDif.x > 0;
 
-        currentInterval += Time.deltaTime;
+        //currentInterval += Time.deltaTime;
+        //if (currentInterval > MoveInterval)
+        //{
+        //    rgbody.velocity = new Vector2(Math.Sign(playerMonsterDif.x) * Acceleration, rgbody.velocity.y);
+        //    currentInterval = 0;
+        //}
+        //anim.SetFloat("speed", Math.Abs(rgbody.velocity.x));
     }
 
     public void Hit(float hitDmg)
     {
-        currentHp -= hitDmg;
+        //currentHp -= hitDmg;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().Hit(Math.Sign(playerMonsterDif.x), monsterDmg);
+            //collision.gameObject.GetComponent<PlayerController>().Hit(Math.Sign(playerMonsterDif.x), monsterDmg);
         }
     }
 
@@ -81,7 +81,7 @@ public class MonsterController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Die();
+            //Die();
         }
     }
 
